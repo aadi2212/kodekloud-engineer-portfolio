@@ -167,4 +167,4 @@ All issues were resolved:
 2]sudo TTY requirement → fixed using sudo -S.
 3]Nested folder structure → fixed with correct Publish Over SSH config.
 4]Logs are now correctly transferred & visible in /usr/src/data
-<img width="951" height="4068" alt="image" src="https://github.com/user-attachments/assets/518cc740-d1fb-49f0-bb08-c8e605675187" />
+
