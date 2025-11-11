@@ -79,6 +79,7 @@ Benefits:
 	
 Acknowledgement:
 Thanks to KodeKloud for providing practical DevOps challenges that simulate real-world issues and error troubleshooting.
+<img width="912" height="1963" alt="image" src="https://github.com/user-attachments/assets/f44eba4f-6d74-47d2-9d50-33f0547e193e" />
 
 
 
