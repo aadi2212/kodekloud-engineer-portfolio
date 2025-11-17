@@ -1,77 +1,89 @@
-Day 2 — Temporary User Setup with Expiry
-🏢 Task Overview
+✅ Day 2: Temporary User Setup with Expiry
+✅ 1. Task Overview
 
 A developer named kirsty needs temporary access to the Nautilus project.
-To ensure proper access management, her account must expire automatically on a specific date.
+To maintain proper access control, her account must automatically expire on a specific date.
 
 Your task:
 
-👉 Create a user kirsty on App Server 2 with an expiry date of 2024-01-28.
-👉 Username must be lowercase as per standard Linux protocol.
+👉 Create user kirsty on App Server 2 (stapp02) with an expiry date of 2024-01-28.
+👉 Ensure the username remains lowercase per Linux standards.
 
-🎯 Objective
+✅ 2. Objective
 
 Create user kirsty on stapp02
 
-Set expiry date: 28 January 2024
+Set account expiry: 28 January 2024
 
-Ensure the user cannot log in after expiry
+Ensure the account becomes inaccessible after expiry
 
-Verify the expiry details
+Verify expiry settings
 
-🛠 Step-by-Step Instructions
-1️⃣ SSH into App Server 2
+✅ 3. Access the Server
+
+SSH into App Server 2:
+
 ssh steve@172.16.238.11
-# password: Am3ric@
 
-2️⃣ Create the User with an Expiry Date
 
-Use the -e option to set the account expiration:
+Password: Am3ric@
+
+✅ 4. Create User with Expiry Date
+
+Create the user and assign an expiration date:
 
 sudo useradd -e 2024-01-28 kirsty
 
 
 📌 Notes:
 
--e → sets account expiry
+-e → sets the account expiry date
 
-kirsty must be lowercase
+Username must be lowercase → kirsty
 
-3️⃣ Set Password for the User
+✅ 5. Set Password for the User
+
+Assign a password:
+
 sudo passwd kirsty
 
 
 Example password used:
-
 kirsty@123
 
-4️⃣ Verify User Expiry Details
+✅ 6. Verify Expiry Details
+
+Check account expiry:
+
 sudo chage -l kirsty
 
 
-Expected output snippet:
+Expected Output Snippet:
 
 Account expires : Jan 28, 2024
 
-📌 Additional Notes
+📌 7. Additional Notes
 
-Using account expiry prevents unauthorized access after the required period
+Account expiry is ideal for contractors, temporary users, developers, or support engineers
 
-Very useful for contractors, temporary developers, support engineers
+After expiry, the user cannot log in
 
-After expiration, user cannot log in unless expiry is removed or extended
+Expiry can be removed or extended using:
 
-📘 Task Information
+sudo chage -E -1 kirsty        # Remove expiry
+sudo chage -E YYYY-MM-DD kirsty  # Extend expiry
+
+📘 8. Task Information
 Field	Details
 Task ID	Temporary User Expiry Setup
 Date	8/8/2025
 Category	Linux, User Management, Access Control
 Environment	Stratos Datacenter
 Server	stapp02 (User: steve)
-✅ Final Result
+🎉 Final Result
 
 ✔ User kirsty created
 ✔ Expiry date set to 2024-01-28
-✔ Password configured
-✔ Verification complete
+✔ Password assigned
+✔ Verification completed
 ✔ Task successfully completed
