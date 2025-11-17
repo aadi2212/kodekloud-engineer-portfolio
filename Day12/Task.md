@@ -2,9 +2,7 @@ Linux Network Services
 
 
 
-1]
-
-Our monitoring tool has reported an issue in Stratos Datacenter. One of our app servers has an issue, as its Apache service is not reachable on port 8086 (which is the Apache port). The service itself could be down, the firewall could be at fault, or something else could be causing the issue.
+1]Our monitoring tool has reported an issue in Stratos Datacenter. One of our app servers has an issue, as its Apache service is not reachable on port 8086 (which is the Apache port). The service itself could be down, the firewall could be at fault, or something else could be causing the issue.
 
 
 
