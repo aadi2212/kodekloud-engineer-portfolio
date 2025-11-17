@@ -1,130 +1,74 @@
-Secure Root SSH Access
-
-
-
-1]
-
-Following security audits, the xFusionCorp Industries security team has rolled out new protocols, including the restriction of direct root SSH login.
-
-
-
-Your task is to disable direct SSH root login on all app servers within the Stratos Datacenter.
-
-
-
-->
-
-
+🚀 Day 3 – Secure Root SSH Access
 
 Task: Disable Direct SSH Root Login on All App Servers
+Date: 10 Aug 2025
+Category: Linux Server Security / SSH Hardening
+Project: xFusionCorp Industries – Stratos Datacenter
 
-Date: 10-Aug-2025
+🔒 Background
 
-Project: xFusionCorp Industries – Stratos Datacenter Security Hardening
+During a recent security audit, the xFusionCorp security team announced new protocols to strengthen server access controls. One of the key policies is to disable direct SSH login for the root user.
+Root login over SSH is a common attack vector, and disabling it significantly reduces the risk of brute-force attacks.
 
-Category: Linux Server Security / SSH Configuration
+🎯 Objective
 
+Disable direct SSH root login on the following servers:
 
+App Server 1
 
-Background
+App Server 2
 
-Following security audits, the xFusionCorp Industries security team implemented stricter access control policies. One of these measures requires disabling direct SSH root login on all application servers to prevent unauthorized privileged access.
+App Server 3
 
+Only non-root users should be allowed to SSH, and administrative privileges should be gained through sudo when required.
 
+🛠️ Step-by-Step Implementation
+1️⃣ SSH into Each App Server
+ssh tony@172.16.238.10    # Example: App Server 1
 
+2️⃣ Switch to Root User
+sudo su -
 
-
-Objective
-
-Disable direct SSH root login on:
-
-&nbsp;	• App Server 1
-
-&nbsp;	• App Server 2
-
-&nbsp;	• App Server 3
-
-
-
-
-
-Step-by-Step Implementation-
+3️⃣ Edit the SSH Configuration File
+vi /etc/ssh/sshd_config
 
 
+Find this line:
 
-1]SSH into Each App Server
-
-ssh tony@172.16.238.10
-
+#PermitRootLogin yes
 
 
-2]Switch to root
-
-&nbsp; sudo su -
-
-
-
-3]Edit SSH Configuration
-
-&nbsp;vi /etc/ssh/sshd\_config
-
-
-
-Find
-
-&nbsp;PermitRootLogin Yes
-
-
-
-Change to 
-
-&nbsp;PermitRootLogin no
-
-
-
-If the line is commented (# at the beginning), remove the # and set it to no.
-
-
-
-
-
-4]Restart SSH Service-
-
-&nbsp; systemctl restart sshd
-
-
-
-5]Verify Configuration-
-
-&nbsp;grep PermitRootLogin /etc/ssh/sshd\_config
-
-
-
-Expected Output-
+Modify it to:
 
 PermitRootLogin no
 
 
+🔸 If it is commented out, remove the #.
+🔸 Change yes → no.
+
+4️⃣ Restart SSH Service
+systemctl restart sshd
+
+5️⃣ Verify the Configuration
+grep PermitRootLogin /etc/ssh/sshd_config
 
 
+Expected output:
 
-Validation
+PermitRootLogin no
 
-&nbsp;	• Confirm that SSH login with root user is now blocked.
+✅ Validation
 
-&nbsp;	• Only non-root accounts with sudo privileges can access via SSH.
+SSH login using the root user should now be blocked.
 
+Only regular users with sudo privileges can log in.
 
+Ensures accountability and minimizes unauthorized privileged access.
 
+🔐 Security Impact
 
+Prevents brute-force attacks targeting the root account.
 
-Security Impact
+Encourages the use of individual user accounts.
 
-&nbsp;	• Reduces the risk of brute-force attacks on root user.
-
-&nbsp;	• Enforces use of individual user accounts for accountability.
-
-
-
-
-
+Strengthens overall SSH security posture in the datacenter.
