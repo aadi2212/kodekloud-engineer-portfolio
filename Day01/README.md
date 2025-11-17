@@ -1,112 +1,85 @@
-1]Linux user set-up with non-interactive shell
+Day 1 — Linux User Setup with Non-Interactive Shell
+🏢 Task Overview
 
+The system admin team at xFusionCorp Industries needs to create a service account for a backup agent.
+This account must not have interactive shell access.
 
+Your task:
 
-To accommodate the backup agent tool's specifications, the system admin team at xFusionCorp Industries requires the creation of a user with a non-interactive shell. Here's your task: Create a user named siva with a non-interactive shell on App Server 3.
-
-
-
-->
-
-
-
-🛠 Step-by-Step Instructions
-
-
-
-1️⃣ SSH into App Server 3
-
-&nbsp;ssh banner@172.16.238.12
-
-&nbsp;pass-BigGr33n
-
-
-
-2️⃣ Create the User siva with Non-Interactive Shell
-
-Use the /sbin/nologin shell depending on your system
-
-
-
-&nbsp;sudo usermod -s /sbin/nologin siva 
-
-
-
-✅ This prevents siva from logging into the system interactively.
-
-You can verify the shell path available on your server using:
-
-
-
-&nbsp;getent  passwd siva
-
-
-
-siva:x:1001:1001::/home/siva:/sbin/nologin
-
-
-
-&nbsp;  cat /etc/shells
-
-
-
-3️⃣ Verify User and Shell
-
-
-
-&nbsp;grep siva /etc/passwd 
-
-
-
-Expected output-
-
-
-
-siva:x:1001:1001::/home/siva:/sbin/nologin
-
-
-
-
-
-Task Info-
-
-
-
-Task Id- Linus user and Shell Management
-
-Date- 7/8/2025
-
-Category- Linux, User Management, Shell Access Control
-
-Environment- Stratos Datacenter
-
-Server Involved-
-
-Stapp03- \[User-banner]
-
-
-
-
+👉 Create a user siva on App Server 3 with a non-interactive shell.
 
 🎯 Objective
 
-To support the backup agent tool's specifications, the system admin team at xFusionCorp Industries has requested the creation of a non-login service account:
+Create a user siva on stapp03.
+
+Assign a non-login shell (/sbin/nologin or equivalent).
+
+Ensure the user cannot log in interactively.
+
+🛠 Step-by-Step Instructions
+1️⃣ SSH into App Server 3
+ssh banner@172.16.238.12
+# password: BigGr33n
+
+2️⃣ Assign a Non-Interactive Shell to User siva
+
+Use /sbin/nologin or another non-login shell depending on OS:
+
+sudo usermod -s /sbin/nologin siva
 
 
+👉 This ensures the user cannot access the shell interactively.
 
-• Create a user named siva on App Server 3.
+3️⃣ Verify the User's Shell
 
-• The user should have no interactive login shell.
+Check user entry:
+
+getent passwd siva
 
 
+Expected:
+
+siva:x:1001:1001::/home/siva:/sbin/nologin
 
 
+Check available shells:
 
-📌 Notes:
+cat /etc/shells
 
-&nbsp;	• This is useful for automation or service users who don't require shell access.
 
-&nbsp;	• If /sbin/nologin is not available, use /usr/sbin/nologin or /bin/false
+Double-check via /etc/passwd:
+
+grep siva /etc/passwd
+
+
+Expected:
+
+siva:x:1001:1001::/home/siva:/sbin/nologin
+
+📌 Notes
+
+Useful for automation/service accounts that should not access the terminal.
+
+Alternative non-login shells:
+
+/usr/sbin/nologin
+
+/bin/false
+
+📘 Task Information
+Field	Details
+Task ID	Linux User & Shell Management
+Date	7/8/2025
+Category	Linux, User Management, Shell Access Control
+Environment	Stratos Datacenter
+Server	stapp03 (User: banner)
+✅ Final Result
+
+✔ User siva created
+✔ Non-interactive shell applied
+✔ Verification complete
+✔ Task successfully completed
+
 
 
 
