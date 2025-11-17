@@ -6,33 +6,39 @@ Category: Linux Server Security / SSH Hardening
 Project: xFusionCorp Industries – Stratos Datacenter
 
 🔒 Background
-During a recent security audit, the xFusionCorp security team announced new protocols to strengthen server access controls. One of the key policies is to disable direct SSH login for the root user.
-Root login over SSH is a common attack vector, and disabling it significantly reduces the risk of brute-force attacks.
+
+During a recent security audit, the xFusionCorp security team introduced new security measures to strengthen SSH access.
+One of the most important changes is to disable direct SSH login for the root user to reduce security risks.
 
 🎯 Objective
-Disable direct SSH root login on the following servers:
+
+Disable direct SSH root login on:
 
 App Server 1
+
 App Server 2
+
 App Server 3
 
-Only non-root users should be allowed to SSH, and administrative privileges should be gained through sudo when required.
-
-Step-by-Step Implementation:
+🛠️ Step-by-Step Implementation
 1️⃣ SSH into Each App Server
-ssh tony@172.16.238.10    # Example: App Server 1
+ssh tony@172.16.238.10
 
-2️⃣ Switch to Root User
+2️⃣ Switch to Root
 sudo su -
 
-3️⃣ Edit the SSH Configuration File
+3️⃣ Edit SSH Configuration
 vi /etc/ssh/sshd_config
 
-Find this line:
-Find this line:
 
-🔸 If it is commented out, remove the #.
-🔸 Change yes → no.
+Find:
+
+#PermitRootLogin yes
+
+
+Change to:
+
+PermitRootLogin no
 
 4️⃣ Restart SSH Service
 systemctl restart sshd
@@ -40,16 +46,23 @@ systemctl restart sshd
 5️⃣ Verify the Configuration
 grep PermitRootLogin /etc/ssh/sshd_config
 
+
 Expected output:
+
 PermitRootLogin no
 
 ✅ Validation
-SSH login using the root user should now be blocked.
-Only regular users with sudo privileges can log in.
-Ensures accountability and minimizes unauthorized privileged access.
+
+Root login over SSH is blocked.
+
+Only non-root users with sudo privileges can log in.
+
+Improves server security and minimizes risk.
 
 🔐 Security Impact
-Prevents brute-force attacks targeting the root account.
-Encourages the use of individual user accounts.
-Strengthens overall SSH security posture in the datacenter.
 
+Prevents brute-force attacks on the root account.
+
+Encourages secure user-based access.
+
+Strengthens overall SSH security posture.
