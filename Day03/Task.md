@@ -1,58 +1,61 @@
-Day 3 – Secure Root SSH Access
+✅ Day 3: Secure Root SSH Access
+✅ 1. Task Overview
 
-Task: Disable direct SSH root login on all application servers
-Date: 10 Aug 2025
-Category: Linux Server Security / SSH Hardening
+Disable direct SSH login for the root user on all application servers (App Server 1, App Server 2, App Server 3) to improve server security. Only non-root users with sudo privileges will be able to log in.
 
-Objective
+✅ 2. Prerequisites
 
-Disable direct SSH login for the root user on the following servers in the Stratos Datacenter:
+Access to application servers via a non-root user (e.g., tony) with sudo privileges.
 
-App Server 1
+Basic knowledge of SSH and editing Linux configuration files.
 
-App Server 2
+✅ 3. Step-by-Step Instructions
 
-App Server 3
+SSH into each application server:
 
-Steps
-1. SSH into Each App Server
-ssh tony@172.16.238.10
+ssh tony@<server-ip>
 
-2. Switch to Root
+
+Switch to the root user:
+
 sudo su -
 
-3. Edit SSH Configuration
+
+Edit the SSH configuration file:
+
 vi /etc/ssh/sshd_config
 
 
-Update the following line:
-
-From:
+Locate the line:
 
 #PermitRootLogin yes
 
 
-To:
+Change it to:
 
 PermitRootLogin no
 
-4. Restart SSH Service
+
+Save the file and exit the editor.
+
+Restart the SSH service to apply changes:
+
 systemctl restart sshd
 
-5. Verify Configuration
+✅ 4. Verification
+
+Check that root login is disabled:
+
 grep PermitRootLogin /etc/ssh/sshd_config
 
 
-Expected:
+Expected Output:
 
 PermitRootLogin no
 
-Validation
 
-Root SSH access is disabled.
+Attempting to SSH directly as root should fail, while a non-root user with sudo should succeed.
 
-Only non-root users with sudo privileges can log in.
+✅ 5. Conclusion
 
-Security Benefit
-
-Disabling root SSH login reduces security risks and prevents unauthorized privileged access.
+Direct SSH access for the root user has been disabled on all application servers. This enhances security by requiring users to log in via non-root accounts and use sudo for administrative tasks, reducing the risk of unauthorized privileged access.
